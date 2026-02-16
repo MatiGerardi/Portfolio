@@ -1,0 +1,37 @@
+---
+interface Props {
+  images: string[];
+  slug?: string;
+}
+
+const { images, slug } = Astro.props;
+---
+
+<div class="carousel max-w-3xl mb-6 rounded-lg shadow-lg">
+  {images.map((img, index) => {
+    const slideId = `slide${index + 1}`;
+    const prevSlide = index === 0 ? `slide${images.length}` : `slide${index}`;
+    const nextSlide = index === images.length - 1 ? `slide1` : `slide${index + 2}`;
+    
+    return (
+      <div id={slideId} class="carousel-item relative w-full">
+        <img
+          src={img}
+          class="w-full"
+          style={index === 0 && slug ? `view-transition-name: img-${slug}` : undefined}
+          alt={`Slide ${index + 1}`}
+        />
+        <div
+          class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
+        >
+          {images.length > 1 && (
+          <>
+            <a href={`#${prevSlide}`} class="btn btn-circle">❮</a>
+            <a href={`#${nextSlide}`} class="btn btn-circle">❯</a>
+          </>
+          )}
+        </div>
+      </div>
+    );
+  })}
+</div>

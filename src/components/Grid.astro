@@ -1,86 +1,41 @@
 ---
-// Example data structure for your webapps
-const webapps = [
-  {
-    id: 1,
-    title: "Project Alpha",
-    size: "3.9 MB",
-    image: "/images/project1.jpg",
-    url: "/projects/alpha"
-  },
-  {
-    id: 2,
-    title: "Project Beta",
-    size: "4 MB",
-    image: "/images/project2.jpg",
-    url: "/projects/beta"
-  },
-  {
-    id: 3,
-    title: "Project Gamma",
-    size: "3.8 MB",
-    image: "/images/project3.jpg",
-    url: "/projects/gamma"
-  },
-  {
-    id: 4,
-    title: "Project Delta",
-    size: "4.1 MB",
-    image: "/images/project4.jpg",
-    url: "/projects/delta"
-  },
-  {
-    id: 5,
-    title: "Project Epsilon",
-    size: "4 MB",
-    image: "/images/project5.jpg",
-    url: "/projects/epsilon"
-  },
-  {
-    id: 6,
-    title: "Project Zeta",
-    size: "3.9 MB",
-    image: "/images/project6.jpg",
-    url: "/projects/zeta"
-  },
-  {
-    id: 7,
-    title: "Project Eta",
-    size: "3.8 MB",
-    image: "/images/project7.jpg",
-    url: "/projects/eta"
-  },
-  {
-    id: 8,
-    title: "Project Theta",
-    size: "4 MB",
-    image: "/images/project8.jpg",
-    url: "/projects/theta"
-  }
-];
+import { getCollection, type CollectionEntry } from "astro:content";
+
+type WebAppEntry = CollectionEntry<"web-apps">;
+const webApps: WebAppEntry[] = await getCollection("web-apps");
 ---
 
-<section class=" bg-slate-900 p-6">
+<section class="p-6">
   <div class="mx-auto max-w-7xl">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {webapps.map((app) => (
-        <a 
-          href={app.url}
-          class="group relative block overflow-hidden rounded-2xl bg-slate-800 transition-transform duration-300 hover:scale-105"
-        >
-          <div class="aspect-[4/3] overflow-hidden">
-            <img 
-              src={app.image} 
-              alt={app.title}
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-            />
-          </div>
-          <div class="p-4 bg-gradient-to-t from-slate-900/90 to-transparent absolute bottom-0 left-0 right-0">
-            <h3 class="text-white font-semibold text-lg mb-1">{app.title}</h3>
-            <p class="text-slate-300 text-sm">{app.size}</p>
-          </div>
-        </a>
-      ))}
+    <div
+      class={`grid gap-6 ${webApps.length === 1 ? "grid-cols-1" : "md:grid-cols-2"}`}
+    >
+      {
+        webApps.map((webApp) => {
+          // const { slug, data } = webApp;
+          // const { title, img, url } = data;
+
+          return (
+            <div class="card w-60 shadow-sm">
+              <figure>
+                <img src={webApp.data.img} alt="Shoes" style={`view-transition-name: img-${webApp.slug}`} />
+              </figure>
+              <div id={webApp.slug} class="card-body backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-lg" style={`view-transition-name: body-${webApp.slug}`}>
+                <div class="justify-between flex items-center">
+                  <h2 class="card-title">{webApp.data.title}</h2>
+                  <div>{webApp.data.date}</div>
+                </div>
+                <p>{webApp.data.description}</p>
+                <div class="card-actions justify-end">
+                  <a href={`/web-app/${webApp.slug}`} class="btn btn-primary">
+                    Explore
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   </div>
 </section>

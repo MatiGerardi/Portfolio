@@ -1,0 +1,37 @@
+---
+interface Technology {
+  name: string;
+  icon: string;
+  color?: string;
+}
+
+interface Props {
+  title: string;
+  technologies: Technology[];
+}
+
+const { title, technologies } = Astro.props;
+---
+
+<div class="card w-full h-full shadow-sm">
+  <div
+    class="card-body backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg p-6 h-full flex flex-col"
+  >
+    <div class="flex items-center justify-center mb-4">
+      <h2 class="card-title text-yellow-300 text-xl font-bold">{title}</h2>
+    </div>
+    <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 flex-1 content-start">
+      {technologies.map((tech) => (
+        <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-white/5 transition-all">
+          <img 
+            src={tech.icon} 
+            alt={tech.name} 
+            class="w-12 h-12 object-contain"
+            style={tech.color ? `filter: drop-shadow(0 0 8px ${tech.color});` : ''}
+          />
+          <span class="text-gray-300 text-sm text-center">{tech.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

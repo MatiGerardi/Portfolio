@@ -1,0 +1,34 @@
+---
+import TecCard from "./TecCard.astro";
+import { frontendTechs, backendTechs, databaseTools, methodologies } from "../data/technologies";
+---
+
+<section class="flex flex-col items-center py-20 w-full max-w-5xl px-8 md:px-12">
+  <h2 id="skills" class="text-3xl font-bold text-white mb-8">Skills & Technologies</h2>
+  <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(200px,auto)]">
+    <div class="sm:col-span-2 lg:row-span-2">
+      <TecCard 
+        title="Frontend"
+        technologies={frontendTechs}
+      />
+    </div>
+    <div class="sm:col-span-1 lg:col-span-2 lg:row-span-1">
+      <TecCard 
+        title="Backend"
+        technologies={backendTechs}
+      />
+    </div>
+    <div class="sm:col-span-1 lg:col-span-2 lg:row-span-1">
+      <TecCard 
+        title="Databases & Tools"
+        technologies={databaseTools}
+      />
+    </div>
+    <div class="sm:col-span-2 lg:col-span-2 lg:row-span-1">
+      <TecCard 
+        title="Methodologies & Practices"
+        technologies={methodologies}
+      />
+    </div>
+  </div>
+</section>
