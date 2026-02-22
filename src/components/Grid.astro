@@ -12,22 +12,24 @@ const webApps: WebAppEntry[] = await getCollection("web-apps");
     >
       {
         webApps.map((webApp) => {
-          // const { slug, data } = webApp;
-          // const { title, img, url } = data;
 
           return (
             <div class="card w-60 shadow-sm">
               <figure>
-                <img src={webApp.data.img} alt="Shoes" style={`view-transition-name: img-${webApp.slug}`} />
+                <img 
+                  src={webApp.data.img} 
+                  alt="Shoes" 
+                  transition:name={`img-${webApp.slug}`}
+                />
               </figure>
-              <div id={webApp.slug} class="card-body backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-lg" style={`view-transition-name: body-${webApp.slug}`}>
+              <div id={webApp.slug} class="card-body backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-lg">
                 <div class="justify-between flex items-center">
                   <h2 class="card-title">{webApp.data.title}</h2>
                   <div>{webApp.data.date}</div>
                 </div>
                 <p>{webApp.data.description}</p>
                 <div class="card-actions justify-end">
-                  <a href={`/web-app/${webApp.slug}`} class="btn btn-primary">
+                  <a href={`/web-app/${webApp.slug}`} class="btn border border-white/40">
                     Explore
                   </a>
                 </div>

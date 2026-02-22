@@ -1,40 +1,55 @@
 ---
 import Grid from "./Grid.astro";
-import Navbar from "./Navbar.astro";
 import BentoGrid from "./BentoGrid.astro";
 ---
 
 <div>
   <main class="px-10 py-0 flex flex-col items-center min-h-screen">
-    <div id="welcome" class="flex flex-col items-center bg-zinc-800 min-w-screen py-40">
+    <div
+      id="welcome"
+      class="flex flex-col items-center bg-zinc-800 min-w-screen py-40"
+    >
       <h1 class="text-6xl font-bold text-white mb-4">Matias Gerardi</h1>
       <h2 class="text-4xl font-bold text-yellow-300 mb-4">
         Software Developer
       </h2>
     </div>
 
-    <div id="personal-info" class="personal-info">
+    <div id="personal-info" class="personal-info bg-gray-950">
       <p class="text-lg text-gray-300 max-w-2xl p-6">
         My name is Matias, I am a Full Stack Developer passionate about creating
         web applications that are both functional and visually appealing.
         Explore my portfolio to see some of the projects I've worked on!
       </p>
       <section class="flex flex-col items-center py-20">
-        <h2 id="projects" class="text-3xl font-bold text-white mb-6">Projects</h2>
+        <h2 id="projects" class="text-3xl font-bold text-white mb-6">
+          Projects
+        </h2>
         <Grid />
       </section>
 
       <BentoGrid />
-      <section class="flex flex-col items-center py-20">
-        <h2 id="contact" class="text-3xl font-bold text-white mb-6">Contact</h2>
-        <p class="text-lg text-gray-300 max-w-2xl p-6">
-          Feel free to reach out to me via email at
-          <a class="text-yellow-300" href="mailto:matigerardi1991@gmail.com">matigerardi1991@gmail.com</a>.
-        </p>
-      </section>
     </div>
-
   </main>
+
+  <footer class="flex flex-col items-center py-10 bg-zinc-800">
+    <h2 id="contact" class="text-3xl font-bold text-white mb-4">Contact</h2>
+    <div class="text-lg text-gray-300 max-w-2xl p-6 text-center">
+      Feel free to reach out to me via email at
+      <a class="text-yellow-300" href="mailto:matigerardi1991@gmail.com"
+        >matigerardi1991@gmail.com</a
+      >. Instagram
+      <a
+        class="text-yellow-300"
+        href="https://www.instagram.com/gerardimatias_/">gerardimatias_</a
+      >
+      <br />
+      <a
+        class="text-yellow-300"
+        href="https://www.linkedin.com/in/matias-gerardi-675718149/">LinkedIn</a
+      >
+    </div>
+  </footer>
 </div>
 
 <style>
@@ -43,16 +58,13 @@ import BentoGrid from "./BentoGrid.astro";
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: hsla(225, 0%, 8%, 1);
-    /* background-image:
-			radial-gradient(at 50% 0%, hsla(63,46%,28%,1) 0px, transparent 50%),
-			radial-gradient(at 50% 100%, hsla(281,46%,28%,1) 0px, transparent 50%); */
+    /* background-color: hsla(225, 0%, 8%, 1); */
     background:
       radial-gradient(
         circle at 50% 50%,
-        hsla(63,46%,28%,1) 0px,
+        hsla(63, 46%, 28%, 1) 0px,
         transparent 50%
       ),
-      hsla(0, 0%, 0%, 1);
+      hsla(240, 10%, 4%, 1);
   }
 </style>

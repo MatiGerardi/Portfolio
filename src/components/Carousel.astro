@@ -17,8 +17,8 @@ const { images, slug } = Astro.props;
       <div id={slideId} class="carousel-item relative w-full">
         <img
           src={img}
+          transition:name={`img-${slug}`}
           class="w-full"
-          style={index === 0 && slug ? `view-transition-name: img-${slug}` : undefined}
           alt={`Slide ${index + 1}`}
         />
         <div
