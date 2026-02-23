@@ -3,24 +3,56 @@ import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 
-const { title } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Matias Gerardi Portfolio",
+  description = "Portfolio of Matias Gerardi showcasing web apps, projects, and technologies.",
+} = Astro.props;
+
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Navbar />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <ClientRouter />
   </head>
   <body>
+    <Navbar />
     <main>
       <slot />
     </main>
   </body>
+  
+
+  <footer class="flex flex-col items-center py-10 gap-2 bg-zinc-800">
+    <h2 id="contact" class="text-3xl font-bold text-white">Contact</h2>
+    <div class="text-lg text-gray-300 max-w-2xl text-center">
+      Feel free to reach out to me via email at
+      <a class="text-yellow-300" href="mailto:matigerardi1991@gmail.com"
+        >matigerardi1991@gmail.com
+      </a>
+      <br> 
+      Instagram
+      <a
+        class="text-yellow-300"
+        href="https://www.instagram.com/gerardimatias_/">gerardimatias_</a
+      >
+      <br />
+      <a
+        class="text-yellow-300"
+        href="https://www.linkedin.com/in/matias-gerardi-675718149/">LinkedIn</a
+      >
+    </div>
+  </footer>
 </html>
 
 <style>
