@@ -1,27 +1,26 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Carousel from "../../components/Carousel.astro";
-import { getCollection, render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const webApps = await getCollection("web-apps");
-  return webApps.map((webApp) => ({
-    params: { slug: webApp.slug },
-    props: { webApp },
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
   }));
 }
 
-const { webApp } = Astro.props;
-const { data } = webApp;
-const { title, description, img, images, url, date } = data;
+type Props = { project: CollectionEntry<"projects"> };
+const { project } = Astro.props;
 
 // Use images array if available, otherwise fallback to single img
-const carouselImages = images && images.length > 0 ? images : [img];
+const carouselImages = project.data.images && project.data.images.length > 0 ? project.data.images : [project.data.img];
 
-const { Content } = await render(webApp);
+const { Content } = await render(project);
 ---
 
-<Layout title={`${title} | Matias Gerardi Portfolio`} description={description}>
+<Layout title={`${project.data.title} | Matias Gerardi Portfolio`} description={project.data.description}>
   <div class="gap-12 bg-mist-900">
     <main class="px-10 py-10 flex flex-col items-center bg-zinc-950">
       <div class="relative w-full max-w-3xl flex justify-center items-center">
@@ -29,21 +28,21 @@ const { Content } = await render(webApp);
           Volver
         </a>
 
-        <h1 class="text-4xl font-bold text-white">{title}</h1>
+        <h1 class="text-4xl font-bold text-white">{project.data.title}</h1>
       </div>
 
-      <Carousel images={carouselImages} slug={webApp.slug} />
+      <Carousel images={carouselImages} slug={project.id} />
 
       <div class="flex flex-col items-center max-w-3xl text-center gap-6">
         <div class="flex items-center gap-6">
           <p class="text-lg text-gray-300 max-w-2xl">
-            {description}
+            {project.data.description}
             <br />
-            Date: {date}
+            Date: {project.data.date}
           </p>
 
           <a
-            href={url}
+            href={project.data.url}
             class="btn border border-white/40"
             target="_blank"
             rel="noopener noreferrer"

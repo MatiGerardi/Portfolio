@@ -12,9 +12,7 @@ NextJs, Tailwind, PostgreSQL, Prisma, MercadoPago SDK, Cloudinary, Gemini AI cha
 
 # Project Overview
 
-**Originally conceived as a collaborative project during a web development course, this platform was subsequently refined and expanded.** It is a comprehensive wine e-commerce solution built with **Next.js (App Router), PostgreSQL + Prisma**, and **NextAuth** for secure authentication. The application features a robust shopping cart, a seamless checkout flow, and a dedicated administrative panel.
-
-The database models users, addresses, categories, producers, wines, carts, orders, sales, OCA shipping, tracking, and push subscriptions.
+**Originally conceived as a collaborative project during a web development course, this platform was subsequently refined and expanded.** It is a comprehensive wine e-commerce solution built with **Next.js, PostgreSQL + Prisma**, and **NextAuth** for secure authentication. The application features a robust shopping cart, a seamless checkout flow, and a dedicated administrative panel.
 
 **Bonus Features:** This implementation includes additional functionalities beyond the original requirements: **AI Chat (Gemini)**, **PWA (Progressive Web App)**, and **Web Push Notifications**.
 
@@ -32,7 +30,7 @@ The database models users, addresses, categories, producers, wines, carts, order
 
 ### Admin Panel
 * **Dashboard:** Real-time metrics and analytics.
-* **Product Management:** Full CRUD (Create, Read, Update, Soft Delete) and stock management.
+* **Product Management:** Full CRUD (Create, Read, Update, Soft Delete).
 * **Order Management:** Order confirmation and status updates.
 * **Logistics:** OCA integration (shipment creation, tracking updates, and state simulation).
 

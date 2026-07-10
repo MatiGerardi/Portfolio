@@ -1,35 +1,39 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
-type WebAppEntry = CollectionEntry<"web-apps">;
-const webApps: WebAppEntry[] = await getCollection("web-apps");
+const projects = await getCollection("projects");
 ---
 
 <section class="p-6">
   <div class="mx-auto max-w-7xl">
     <div
-      class={`grid gap-6 ${webApps.length === 1 ? "grid-cols-1" : "md:grid-cols-2"}`}
+      class={`grid gap-6 ${projects.length === 1 ? "grid-cols-1" : "md:grid-cols-2"}`}
     >
       {
-        webApps.map((webApp) => {
-
+        projects.map((project) => {
           return (
             <div class="card w-60 shadow-sm">
               <figure>
-                <img 
-                  src={webApp.data.img} 
-                  alt="Shoes" 
-                  transition:name={`img-${webApp.slug}`}
+                <img
+                  src={project.data.img}
+                  alt="Shoes"
+                  transition:name={`img-${project.id}`}
                 />
               </figure>
-              <div id={webApp.slug} class="card-body backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-lg">
+              <div
+                id={project.id}
+                class="card-body backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-lg"
+              >
                 <div class="justify-between flex items-center">
-                  <h2 class="card-title">{webApp.data.title}</h2>
-                  <div>{webApp.data.date}</div>
+                  <h2 class="card-title">{project.data.title}</h2>
+                  <div>{project.data.date}</div>
                 </div>
-                <p>{webApp.data.description}</p>
+                <p>{project.data.description}</p>
                 <div class="card-actions justify-end">
-                  <a href={`/web-app/${webApp.slug}`} class="btn border border-white/40">
+                  <a
+                    href={`/projects/${project.id}`}
+                    class="btn border border-white/40"
+                  >
                     Explore
                   </a>
                 </div>
